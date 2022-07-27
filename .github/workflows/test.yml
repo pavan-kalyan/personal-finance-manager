@@ -27,3 +27,12 @@ jobs:
 
       env:
         DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+    - name: Dynamic Badges
+      uses: Schneegans/dynamic-badges-action@v1.4.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: e4a57dc55a753b929013713838d58b6e
+        filename: test.json
+        label: Hello
+        message: World
+        color: orange
