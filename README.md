@@ -1,3 +1,5 @@
+![Build Badge](https://img.shields.io/github/workflow/status/pavan-kalyan/personal-finance-manager/Test)
+
 ### Personal Finance Manager
 
 A personal financial tracker and manager.
