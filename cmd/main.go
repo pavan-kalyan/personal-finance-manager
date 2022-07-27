@@ -66,21 +66,24 @@ func setupDatabase(shouldMigratePtr *bool, dbFilePathPtr *string) (*sql.DB, erro
 		//log.Fatalf("Failed to ping database with err: %v\n", err)
 	}
 
-	runMigrations(shouldMigratePtr, dbFilePathPtr)
+	err = runMigrations(shouldMigratePtr, dbFilePathPtr)
+	if err != nil {
+		return nil, err
+	}
 	return db, nil
 }
 
-func runMigrations(shouldMigratePtr *bool, dbFilePathPtr *string) {
+func runMigrations(shouldMigratePtr *bool, dbFilePathPtr *string) error {
 	if *shouldMigratePtr {
-		pkger.Include("../migrations")
+		_ = pkger.Include("../migrations")
 		migrator, err := migrate.New("pkger://../migrations", fmt.Sprintf("sqlite://%s", *dbFilePathPtr))
 		if err != nil {
-			log.Fatalf("Could not access sqlite db with err: %v\n", err)
+			return fmt.Errorf("Could not access sqlite db with err: %v\n", err)
 		}
 
 		err = migrator.Up()
 		if err != nil && err != migrate.ErrNoChange {
-			log.Fatalf("Failed to run migrations with err: %v\n", err)
+			return fmt.Errorf("Failed to run migrations with err: %v\n", err)
 		}
 	}
 }
