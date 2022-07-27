@@ -86,4 +86,5 @@ func runMigrations(shouldMigratePtr *bool, dbFilePathPtr *string) error {
 			return fmt.Errorf("Failed to run migrations with err: %v\n", err)
 		}
 	}
+	return nil
 }
