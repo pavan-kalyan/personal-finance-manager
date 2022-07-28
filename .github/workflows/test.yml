@@ -16,17 +16,19 @@ jobs:
     - name: Build
       run: go build -v ./...
     - name: Test
-      run: go test -coverprofile=cover.out -v ./...
-    - name: Report results to DeepSource
-      run: |
-        go test -coverprofile=cover.out
-
-        curl https://deepsource.io/cli | sh
-
-        ./bin/deepsource report --analyzer test-coverage --key go --value-file ./cover.out
-
-      env:
-        DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+      run: go test -coverprofile=coverage.txt -v ./...
+#    - name: Report results to DeepSource
+#      run: |
+#        go test -coverprofile=coverage.txt
+#
+#        curl https://deepsource.io/cli | sh
+#
+#        ./bin/deepsource report --analyzer test-coverage --key go --value-file ./coverage.txt
+#
+#      env:
+#        DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
     - name: Dynamic Badges
       uses: Schneegans/dynamic-badges-action@v1.4.0
       with:
