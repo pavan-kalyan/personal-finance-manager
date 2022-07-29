@@ -1,4 +1,5 @@
 ![Build Badge](https://img.shields.io/github/workflow/status/pavan-kalyan/personal-finance-manager/Test)
+[![codecov](https://codecov.io/gh/pavan-kalyan/personal-finance-manager/branch/main/graph/badge.svg?token=CZK8OG428U)](https://codecov.io/gh/pavan-kalyan/personal-finance-manager)
 
 ### Personal Finance Manager
 
